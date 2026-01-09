@@ -61,12 +61,24 @@ export default function EditProductPage({ params }: { params: { id: string } }) 
     setMessage(null)
 
     const formData = new FormData(e.currentTarget)
-    const payload: any = {
-      title: formData.get('title'),
-      description: formData.get('description'),
-      priceCents: Math.round(Number(formData.get('priceCents')) * 100),
-      stock: Number(formData.get('stock') || 0),
-      status: formData.get('status'),
+    const title = formData.get('title')
+    const description = formData.get('description')
+    const priceCents = formData.get('priceCents')
+    const stock = formData.get('stock')
+    const status = formData.get('status')
+
+    if (typeof title !== 'string' || typeof description !== 'string' || typeof status !== 'string') {
+      setSaving(false)
+      setMessage('Dados do formulário inválidos. Verifique os campos e tente novamente.')
+      return
+    }
+
+    const payload = {
+      title,
+      description,
+      priceCents: Math.round(Number(priceCents) * 100),
+      stock: Number(stock ?? 0),
+      status: status as Product['status'],
     }
 
     const res = await fetch(`/api/products/${params.id}`, {

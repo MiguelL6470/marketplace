@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { User, ShoppingBag, Heart, Package, Settings, ArrowLeft } from 'lucide-react'
 import { prisma } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AccountPage() {
   const session = await getServerAuth()
   

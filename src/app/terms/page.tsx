@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Termos de Uso | Pontual Market - Marketplace de Volta Redonda',
-  description: 'Leia os termos e condições de uso do Pontual Market, o marketplace mais confiável de Volta Redonda.',
+  title: 'Termos de Uso | VivaMarket - Marketplace de Volta Redonda',
+  description: 'Leia os termos e condições de uso do VivaMarket, o marketplace mais confiável de Volta Redonda.',
 }
 
 export default function TermsPage() {
@@ -16,14 +16,14 @@ export default function TermsPage() {
             <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Bem-vindo ao Pontual Market! Ao acessar e utilizar nossa plataforma, você concorda com os seguintes termos e condições.
+            Bem-vindo ao VivaMarket! Ao acessar e utilizar nossa plataforma, você concorda com os seguintes termos e condições.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Aceitação dos Termos</h2>
           <p className="text-gray-700 leading-relaxed">
-            Ao criar uma conta, fazer uma compra ou usar qualquer funcionalidade do Pontual Market, você concorda em cumprir estes Termos de Uso.
+            Ao criar uma conta, fazer uma compra ou usar qualquer funcionalidade do VivaMarket, você concorda em cumprir estes Termos de Uso.
             Se você não concorda com qualquer parte destes termos, não deverá utilizar nossos serviços.
           </p>
         </section>
@@ -31,7 +31,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Descrição do Serviço</h2>
           <p className="text-gray-700 leading-relaxed mb-3">
-            O Pontual Market é uma plataforma de marketplace que conecta compradores e vendedores, inicialmente focada em Volta Redonda.
+            O VivaMarket é uma plataforma de marketplace que conecta compradores e vendedores, inicialmente focada em Volta Redonda.
             Nossos serviços incluem:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
@@ -59,12 +59,12 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Compras e Pagamentos</h2>
           <p className="text-gray-700 leading-relaxed mb-3">
-            As compras realizadas através do Pontual Market estão sujeitas aos seguintes termos:
+            As compras realizadas através do VivaMarket estão sujeitas aos seguintes termos:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>Os preços dos produtos são definidos pelos vendedores</li>
             <li>As informações sobre disponibilidade e envio são fornecidas pelos vendedores</li>
-            <li>O Pontual Market atua como intermediador e não é o vendedor direto dos produtos</li>
+            <li>O VivaMarket atua como intermediador e não é o vendedor direto dos produtos</li>
             <li>Taxas de entrega são calculadas no momento da compra</li>
             <li>Todas as transações devem ser realizadas através da plataforma</li>
           </ul>
@@ -87,7 +87,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Vendedores</h2>
           <p className="text-gray-700 leading-relaxed mb-3">
-            Se você é um vendedor no Pontual Market, você concorda em:
+            Se você é um vendedor no VivaMarket, você concorda em:
           </p>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>Fornecer informações precisas sobre seus produtos</li>
@@ -102,8 +102,8 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Propriedade Intelectual</h2>
           <p className="text-gray-700 leading-relaxed">
-            Todo o conteúdo da plataforma Pontual Market, incluindo textos, gráficos, logotipos, ícones, imagens, downloads digitais
-            e compilações de dados, é propriedade da Pontual Market ou de seus fornecedores de conteúdo e está protegido por leis
+            Todo o conteúdo da plataforma VivaMarket, incluindo textos, gráficos, logotipos, ícones, imagens, downloads digitais
+            e compilações de dados, é propriedade da VivaMarket ou de seus fornecedores de conteúdo e está protegido por leis
             de direitos autorais e marcas registradas.
           </p>
         </section>
@@ -111,7 +111,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Limitação de Responsabilidade</h2>
           <p className="text-gray-700 leading-relaxed">
-            O Pontual Market atua como intermediador entre compradores e vendedores. Não somos responsáveis pela qualidade, segurança
+            O VivaMarket atua como intermediador entre compradores e vendedores. Não somos responsáveis pela qualidade, segurança
             ou legitimidade dos produtos vendidos, nem pelas informações fornecidas pelos vendedores. Nossa responsabilidade limita-se
             à intermediação da transação e ao processamento de pagamentos.
           </p>
@@ -138,7 +138,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-3">Dúvidas?</h2>
           <p className="text-gray-700 leading-relaxed">
             Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através da nossa página de contato
-            ou envie um e-mail para <strong>suporte@pontualmarket.com.br</strong>.
+            ou envie um e-mail para <strong>suporte@vivamarket.com.br</strong>.
           </p>
         </section>
       </div>

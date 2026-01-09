@@ -6,6 +6,8 @@ import { Plus, Edit, Trash2, Package, ArrowLeft } from 'lucide-react'
 import { ProductStatusBadge } from './ProductStatusBadge'
 import { DeleteProductButton } from './DeleteProductButton'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ProductsPage() {
   const session = await getServerAuth()
   

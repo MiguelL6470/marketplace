@@ -47,11 +47,11 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">E-mail</h3>
-                <a href="mailto:contato@pontualmarket.com.br" className="text-blue-600 hover:underline">
-                  contato@pontualmarket.com.br
+                <a href="mailto:contato@vivamarket.com.br" className="text-blue-600 hover:underline">
+                  contato@vivamarket.com.br
                 </a>
-                <a href="mailto:suporte@pontualmarket.com.br" className="block text-blue-600 hover:underline">
-                  suporte@pontualmarket.com.br
+                <a href="mailto:suporte@vivamarket.com.br" className="block text-blue-600 hover:underline">
+                  suporte@vivamarket.com.br
                 </a>
               </div>
             </div>

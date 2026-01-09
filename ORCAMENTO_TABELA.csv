@@ -1,0 +1,12 @@
+Item,Descrição,Valor Unitário,Período,Total
+Desenvolvimento MVP + Sistema de Planos,Desenvolvimento completo,1800.00,Único,1800.00
+Vercel Pro,Hospedagem do site,117.00,Mensal,117.00
+Neon PostgreSQL Starter,Banco de dados,30.00,Mensal,30.00
+Supabase Storage Free,Armazenamento de imagens (até 1GB),0.00,Mensal,0.00
+Mercado Pago,Gateway de pagamento (sem mensalidade),0.00,Mensal,0.00
+Taxas Mercado Pago,4.99% + R$ 0.39 por transação,Variável,Por transação,Variável
+,,,,,
+TOTAL MENSAL (fixo),,,,147.00
+TOTAL INICIAL (até MVP),,,,1947.00
+TOTAL ANUAL (após MVP),,,,1764.00
+

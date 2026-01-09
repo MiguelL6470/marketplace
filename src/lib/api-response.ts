@@ -3,19 +3,19 @@ import { NextResponse } from 'next/server'
 /**
  * Resposta de sucesso padrão para APIs
  */
-export function successResponse(data: any, status: number = 200) {
-  return NextResponse.json(data, { status })
+export function successResponse<T>(data: T, status: number = 200) {
+  return NextResponse.json<T>(data, { status })
 }
 
 /**
  * Resposta de erro padrão para APIs
  */
-export function errorResponse(
+export function errorResponse<T>(
   error: string,
   status: number = 400,
-  details?: any
+  details?: T
 ) {
-  return NextResponse.json({ error, ...(details && { details }) }, { status })
+  return NextResponse.json({ error, ...(details !== undefined ? { details } : {}) }, { status })
 }
 
 /**
@@ -31,5 +31,9 @@ export function unauthorizedResponse() {
 export function serverErrorResponse(message: string, status: number = 500) {
   return NextResponse.json({ error: message }, { status })
 }
+
+
+
+
 
 

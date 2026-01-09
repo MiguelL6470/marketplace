@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Package, Clock, CheckCircle, XCircle, ArrowLeft } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardOrdersPage() {
   const session = await getServerAuth()
   

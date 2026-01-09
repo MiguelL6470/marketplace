@@ -1,15 +1,55 @@
-import { Heart, Store, ArrowLeft, ShieldCheck, Truck, RotateCcw, Star } from 'lucide-react'
+import { Store, ArrowLeft, ShieldCheck, Truck, RotateCcw, Star } from 'lucide-react'
 import Link from 'next/link'
 import { FavoriteButton } from './FavoriteButton'
 import { AddToCartButton } from './AddToCartButton'
 import { BuyNowButton } from './BuyNowButton'
 import { getBaseUrl } from '@/lib/api'
 
+type ProductImage = {
+  url: string
+}
+
+type ProductMerchant = {
+  storeName: string
+}
+
+type ProductCategory = {
+  slug: string
+  name: string
+}
+
+type ProductDetails = {
+  id: string
+  slug: string
+  title: string
+  description: string
+  priceCents: number
+  stock: number
+  images?: ProductImage[]
+  merchant?: ProductMerchant | null
+  category?: ProductCategory | null
+}
+
+type RelatedProduct = {
+  id: string
+  slug: string
+  title: string
+  images?: ProductImage[]
+}
+
+type ProductResponse = {
+  product: ProductDetails | null
+}
+
+type RelatedProductsResponse = {
+  items?: RelatedProduct[]
+}
+
 async function getProduct(slug: string) {
   const baseUrl = await getBaseUrl()
   const res = await fetch(`${baseUrl}/api/products/slug/${slug}`, { cache: 'no-store' })
   if (!res.ok) return null
-  const data = await res.json()
+  const data = (await res.json()) as ProductResponse
   return data.product
 }
 
@@ -34,7 +74,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
   
   const price = (product.priceCents / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
   const mainImage = product.images?.[0]?.url
-  const otherImages = product.images?.slice(1) || []
+  const otherImageUrls = product.images?.slice(1).map((image) => image.url).filter(Boolean) ?? []
+  const imageUrls = [mainImage, ...otherImageUrls].filter((url): url is string => Boolean(url))
 
   const baseUrl = await getBaseUrl()
   const productUrl = `${baseUrl}/products/${product.slug}`
@@ -45,7 +86,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     '@type': 'Product',
     name: product.title,
     description: product.description,
-    image: product.images?.map(img => img.url) || [],
+    image: product.images?.map((img) => img.url) || [],
     brand: product.merchant?.storeName ? {
       '@type': 'Brand',
       name: product.merchant.storeName
@@ -58,7 +99,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       seller: {
         '@type': 'Organization',
-        name: product.merchant?.storeName || 'Pontual Market'
+        name: product.merchant?.storeName || 'VivaMarket'
       }
     },
     category: product.category?.name
@@ -91,10 +132,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
         <div className="lg:col-span-7">
           <div className="grid grid-cols-5 gap-3">
             <div className="col-span-1 flex flex-col gap-3 max-h-[560px] overflow-y-auto">
-              {[mainImage, ...otherImages.map((i:any)=>i.url)].filter(Boolean).slice(0,6).map((url:any, idx:number)=>(
-                <div key={String(url)+idx} className="aspect-square bg-gray-50 rounded-md overflow-hidden border">
+              {imageUrls.slice(0, 6).map((url, idx) => (
+                <div key={`${url}-${idx}`} className="aspect-square bg-gray-50 rounded-md overflow-hidden border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={url as string} alt={product.title} className="w-full h-full object-cover" />
+                  <img src={url} alt={product.title} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
@@ -173,7 +214,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <ShieldCheck className="w-4 h-4 text-blue-600" />
-              <span>Compra protegida Pontual</span>
+              <span>Compra protegida VivaMarket</span>
             </div>
           </div>
         </aside>
@@ -193,24 +234,28 @@ async function fetchRelated(categorySlug: string) {
   const baseUrl = await getBaseUrl()
   const res = await fetch(`${baseUrl}/api/products?category=${encodeURIComponent(categorySlug)}&page=1&pageSize=8`, { cache: 'no-store' })
   if (!res.ok) return { items: [] }
-  return res.json()
+  return (await res.json()) as RelatedProductsResponse
 }
 
 async function RelatedByCategory({ slug, currentId }: { slug: string, currentId: string }) {
   const { items } = await fetchRelated(slug)
-  const others = (items || []).filter((p: any) => p.id !== currentId).slice(0, 6)
+  const others = (items ?? []).filter((product) => product.id !== currentId).slice(0, 6)
   if (others.length === 0) return null
   return (
     <section className="mt-12">
       <h2 className="text-xl font-bold text-gray-900 mb-4">Produtos relacionados</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {others.map((p: any) => (
-          <Link key={p.id} href={`/products/${p.slug}`} className="block group">
+        {others.map((product) => (
+          <Link key={product.id} href={`/products/${product.slug}`} className="block group">
             <div className="aspect-square rounded-lg overflow-hidden bg-gray-50 border mb-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.images?.[0]?.url || '/placeholder.png'} alt={p.title} className="w-full h-full object-cover group-hover:opacity-90" />
+              <img
+                src={product.images?.[0]?.url || '/placeholder.png'}
+                alt={product.title}
+                className="w-full h-full object-cover group-hover:opacity-90"
+              />
             </div>
-            <div className="text-sm text-gray-900 line-clamp-2">{p.title}</div>
+            <div className="text-sm text-gray-900 line-clamp-2">{product.title}</div>
           </Link>
         ))}
       </div>

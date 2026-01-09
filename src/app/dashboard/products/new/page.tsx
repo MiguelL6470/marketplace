@@ -11,6 +11,15 @@ type Category = {
   name: string
 }
 
+type NewProductPayload = {
+  title: string
+  description: string
+  priceCents: number
+  stock: number
+  categoryId: string
+  images: Array<{ url: string; alt?: string; position: number }>
+}
+
 export default function NewProductPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -38,10 +47,31 @@ export default function NewProductPage() {
     }
     
     const formData = new FormData(e.currentTarget)
-    const payload: any = Object.fromEntries(formData.entries())
-    payload.priceCents = Math.round(Number(payload.priceCents) * 100)
-    payload.stock = Number(payload.stock || 0)
-    payload.images = uploadedImages
+    const title = formData.get('title')
+    const description = formData.get('description')
+    const price = formData.get('priceCents')
+    const stock = formData.get('stock')
+    const categoryId = formData.get('categoryId')
+
+    if (
+      typeof title !== 'string' ||
+      typeof description !== 'string' ||
+      typeof price !== 'string' ||
+      typeof categoryId !== 'string'
+    ) {
+      setLoading(false)
+      setMessage('Dados do formulário inválidos. Verifique os campos e tente novamente.')
+      return
+    }
+
+    const payload: NewProductPayload = {
+      title,
+      description,
+      priceCents: Math.round(Number(price) * 100),
+      stock: Number(stock ?? 0),
+      categoryId,
+      images: uploadedImages,
+    }
     
     const res = await fetch('/api/products', {
       method: 'POST',
@@ -55,6 +85,7 @@ export default function NewProductPage() {
       setMessage('Produto criado com sucesso!')
       e.currentTarget.reset()
       setUploadedImages([])
+      setSelectedCategoryId('')
       setTimeout(() => {
         router.push('/dashboard/products')
       }, 1500)

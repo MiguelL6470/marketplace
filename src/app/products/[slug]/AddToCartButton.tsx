@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
 import { ShoppingCart } from 'lucide-react'
 
 type AddToCartButtonProps = {
@@ -12,19 +11,27 @@ type AddToCartButtonProps = {
   image?: string
 }
 
+type StoredCartItem = {
+  productId: string
+  slug: string
+  title: string
+  priceCents: number
+  image?: string
+  quantity: number
+}
+
 export function AddToCartButton({ productId, slug, title, priceCents, image }: AddToCartButtonProps) {
   const [pending, startTransition] = useTransition()
   const [added, setAdded] = useState(false)
-  const router = useRouter()
 
   function handleAddToCart() {
     startTransition(() => {
       // Carregar carrinho atual
       const stored = localStorage.getItem('cart')
-      const cartItems = stored ? JSON.parse(stored) : []
+      const cartItems: StoredCartItem[] = stored ? (JSON.parse(stored) as StoredCartItem[]) : []
 
       // Verificar se o produto já está no carrinho
-      const existingIndex = cartItems.findIndex((item: any) => item.productId === productId)
+      const existingIndex = cartItems.findIndex((item) => item.productId === productId)
 
       if (existingIndex >= 0) {
         // Incrementar quantidade
@@ -48,7 +55,7 @@ export function AddToCartButton({ productId, slug, title, priceCents, image }: A
       setTimeout(() => setAdded(false), 2000)
 
       // Opcional: redirecionar para o carrinho após adicionar
-      // router.push('/cart')
+      // window.location.href = '/cart'
     })
   }
 

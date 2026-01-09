@@ -1,8 +1,23 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard, type ProductMinimal } from '@/components/ProductCard'
 import { ShoppingBag, Star, Zap, Flame, Percent, Trophy } from 'lucide-react'
 import { getBaseUrl } from '@/lib/api'
+
+type CategorySummary = {
+  id: string
+  name: string
+  slug: string
+}
+
+type ProductsResponse = {
+  items: ProductMinimal[]
+  total?: number
+}
+
+type CategoriesResponse = {
+  categories: CategorySummary[]
+}
 
 async function fetchLatest() {
   const baseUrl = await getBaseUrl()
@@ -10,14 +25,14 @@ async function fetchLatest() {
     cache: 'no-store',
   })
   if (!res.ok) return { items: [], total: 0 }
-  return res.json()
+  return (await res.json()) as ProductsResponse
 }
 
 async function fetchCategories() {
   const baseUrl = await getBaseUrl()
   const res = await fetch(`${baseUrl}/api/categories`, { next: { revalidate: 600 } })
   if (!res.ok) return { categories: [] }
-  return res.json()
+  return (await res.json()) as CategoriesResponse
 }
 
 async function fetchByCategory(slug: string, take: number = 8) {
@@ -26,25 +41,28 @@ async function fetchByCategory(slug: string, take: number = 8) {
     cache: 'no-store',
   })
   if (!res.ok) return { items: [] }
-  return res.json()
+  return (await res.json()) as ProductsResponse
 }
 
 export default async function HomePage() {
   const [latest, cats] = await Promise.all([fetchLatest(), fetchCategories()])
   
   // Garantir que items e categories sejam arrays
-  const items = latest?.data?.items || latest?.items || []
-  const categories = cats?.categories || []
+  const items = latest.items || []
+  const categories = cats.categories || []
   
   // Seções adicionais: mais vendidos (mock com últimos), ofertas do dia (mock com primeiros), por categoria
   const topSellers = items.slice(0, 8)
   const dealsOfDay = items.slice(4, 12)
-  const catSlugs: string[] = categories.map((c: any) => c.slug as string)
+  const catSlugs = categories.map((category) => category.slug)
   const takePerCat = 6
   const firstTwoCats: string[] = catSlugs.slice(0, 2)
   const [catA, catB] = await Promise.all(
     firstTwoCats.map((slug: string) => fetchByCategory(slug, takePerCat))
   )
+  const catAItems = catA?.items ?? []
+  const catBItems = catB?.items ?? []
+  const hasCategoryShowcase = catAItems.length > 0 || catBItems.length > 0
 
   return (
     <div>
@@ -68,7 +86,7 @@ export default async function HomePage() {
         <section className="py-6 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center gap-2 overflow-x-auto pb-2">
-              {categories.slice(0, 8).map((category: any) => (
+              {categories.slice(0, 8).map((category) => (
                 <Link
                   key={category.id}
                   href={`/search?category=${category.slug}`}
@@ -102,8 +120,8 @@ export default async function HomePage() {
                 </p>
               </div>
             ) : (
-              items.slice(0, 5).map((p: any) => (
-                <ProductCard key={p.id} product={p} />
+              items.slice(0, 5).map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))
             )}
           </div>
@@ -121,8 +139,8 @@ export default async function HomePage() {
               <Link href="/search" className="text-blue-600 hover:text-blue-700 text-sm font-medium">Ver todos →</Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {topSellers.slice(0, 5).map((p: any) => (
-                <ProductCard key={p.id} product={p} />
+              {topSellers.slice(0, 5).map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>
@@ -140,8 +158,8 @@ export default async function HomePage() {
               <Link href="/search" className="text-blue-600 hover:text-blue-700 text-sm font-medium">Ver todas →</Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {dealsOfDay.slice(0, 5).map((p: any) => (
-                <ProductCard key={p.id} product={p} />
+              {dealsOfDay.slice(0, 5).map((product) => (
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>
@@ -149,10 +167,10 @@ export default async function HomePage() {
       )}
 
       {/* Categorias em destaque (primeiras duas categorias com carrosséis simples em grid) */}
-      {((catA?.data?.items || catA?.items)?.length || (catB?.data?.items || catB?.items)?.length) && (
+      {hasCategoryShowcase && (
         <section className="py-10 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 space-y-10">
-            {(catA?.data?.items || catA?.items || []).length > 0 && (
+            {catAItems.length > 0 && (
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
@@ -161,13 +179,13 @@ export default async function HomePage() {
                   <Link href={`/search?category=${categories[0]?.slug || ''}`} className="text-blue-600 hover:text-blue-700 text-sm font-medium">Ver categoria →</Link>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {(catA?.data?.items || catA?.items || []).slice(0, 5).map((p: any) => (
-                    <ProductCard key={p.id} product={p} />
+                  {catAItems.slice(0, 5).map((product) => (
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
               </div>
             )}
-            {(catB?.data?.items || catB?.items || []).length > 0 && categories[1] && (
+            {catBItems.length > 0 && categories[1] && (
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
@@ -176,8 +194,8 @@ export default async function HomePage() {
                   <Link href={`/search?category=${categories[1].slug}`} className="text-blue-600 hover:text-blue-700 text-sm font-medium">Ver categoria →</Link>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {(catB?.data?.items || catB?.items || []).slice(0, 5).map((p: any) => (
-                    <ProductCard key={p.id} product={p} />
+                  {catBItems.slice(0, 5).map((product) => (
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
               </div>

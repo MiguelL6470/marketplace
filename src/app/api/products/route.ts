@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { getServerAuth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { ProductSchema, SearchQuerySchema } from '@/lib/validators'
-import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 
 // Cache curto por URL (com query string) para aliviar cold starts do DB
 export const revalidate = 15
@@ -16,7 +16,7 @@ export async function GET(req: Request) {
   const { q, category, minPrice, maxPrice, page, pageSize } = parsed.data
 
   // Filtro base
-  const where: any = {
+  const where: Prisma.ProductWhereInput = {
     status: 'ACTIVE',
     ...(category ? { category: { slug: category } } : {}),
     ...(minPrice !== undefined || maxPrice !== undefined

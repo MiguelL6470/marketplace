@@ -1,11 +1,11 @@
 "use client"
 
 import Link from 'next/link'
-import { useState, useTransition } from 'react'
+import { useState, useTransition, type MouseEvent } from 'react'
 import { Heart, Truck } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-type ProductMinimal = {
+export type ProductMinimal = {
   id: string
   title: string
   slug: string
@@ -33,7 +33,7 @@ export function ProductCard({ product }: Props) {
   const [isFavorite, setIsFavorite] = useState(false)
   const router = useRouter()
 
-  async function handleFavorite(e: React.MouseEvent) {
+  async function handleFavorite(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     e.stopPropagation()
 
@@ -46,14 +46,14 @@ export function ProductCard({ product }: Props) {
             body: JSON.stringify({ productId: product.id }),
           })
           if (res.status === 401) {
-            router.push('/api/auth/signin')
+            router.push('/login')
             return
           }
           setIsFavorite(true)
         } else {
           const res = await fetch(`/api/favorites/${product.id}`, { method: 'DELETE' })
           if (res.status === 401) {
-            router.push('/api/auth/signin')
+            router.push('/login')
             return
           }
           setIsFavorite(false)

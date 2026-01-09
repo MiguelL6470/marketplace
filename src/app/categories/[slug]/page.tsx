@@ -1,8 +1,13 @@
 import Link from 'next/link'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard, type ProductMinimal } from '@/components/ProductCard'
 import { getBaseUrl } from '@/lib/api'
 import { prisma } from '@/lib/db'
 import { Package, ArrowLeft, SlidersHorizontal, Filter } from 'lucide-react'
+
+type CategoryProductsResponse = {
+  items: ProductMinimal[]
+  total: number
+}
 
 async function getCategory(slug: string) {
   return await prisma.category.findUnique({
@@ -16,14 +21,14 @@ async function fetchCategoryProducts(categorySlug: string) {
     cache: 'no-store',
   })
   if (!res.ok) return { items: [], total: 0 }
-  return res.json()
+  return (await res.json()) as CategoryProductsResponse
 }
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const category = await getCategory(params.slug)
   const result = await fetchCategoryProducts(params.slug)
-  const items = result?.data?.items || result?.items || []
-  const total = result?.data?.total || result?.total || 0
+  const items = result.items || []
+  const total = result.total ?? 0
 
   if (!category) {
     return (
@@ -104,7 +109,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {items.map((product: any) => (
+          {items.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

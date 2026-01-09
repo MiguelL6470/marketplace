@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidade | Pontual Market - Marketplace de Volta Redonda',
-  description: 'Conheça nossa política de privacidade e como protegemos seus dados pessoais no Pontual Market.',
+  title: 'Política de Privacidade | VivaMarket - Marketplace de Volta Redonda',
+  description: 'Conheça nossa política de privacidade e como protegemos seus dados pessoais no VivaMarket.',
 }
 
 export default function PrivacyPage() {
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
             <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
           <p className="text-gray-700 leading-relaxed">
-            A Pontual Market está comprometida em proteger sua privacidade. Esta Política de Privacidade descreve como coletamos,
+            A VivaMarket está comprometida em proteger sua privacidade. Esta Política de Privacidade descreve como coletamos,
             usamos, armazenamos e protegemos suas informações pessoais quando você utiliza nossa plataforma.
           </p>
         </section>
@@ -129,7 +129,7 @@ export default function PrivacyPage() {
             <li><strong>Oposição:</strong> Opor-se ao processamento de seus dados em certas circunstâncias</li>
           </ul>
           <p className="text-gray-700 leading-relaxed mt-4">
-            Para exercer esses direitos, entre em contato conosco através de <strong>privacidade@pontualmarket.com.br</strong>.
+            Para exercer esses direitos, entre em contato conosco através de <strong>privacidade@vivamarket.com.br</strong>.
           </p>
         </section>
 
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
             Se você tiver dúvidas sobre esta Política de Privacidade ou desejar exercer seus direitos, entre em contato conosco:
           </p>
           <ul className="list-none space-y-1 text-gray-700">
-            <li><strong>E-mail:</strong> privacidade@pontualmarket.com.br</li>
+            <li><strong>E-mail:</strong> privacidade@vivamarket.com.br</li>
             <li><strong>Telefone:</strong> (24) 99999-9999</li>
             <li><strong>Endereço:</strong> Volta Redonda, RJ, Brasil</li>
           </ul>

@@ -1,19 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Search, ShoppingCart, Heart, Menu } from 'lucide-react'
 import { HeaderAuth } from './HeaderAuth'
 import { CategoryDropdown } from './CategoryDropdown'
 import { useState } from 'react'
-import { useUser } from '@clerk/nextjs'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const router = useRouter()
-  const { user } = useUser()
+  const { data: session } = useSession()
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -27,18 +26,12 @@ export function Header() {
     <header className="bg-header-dark text-white">
       {/* Top Header Bar - Logo, Search, Login, Cart */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3 h-16 lg:h-20">
+        <div className="flex items-center gap-3 h-20 lg:h-24">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 h-full">
-            <Image
-              src="/logo.png"
-              alt="Pontual Market"
-              width={320}
-              height={106}
-              sizes="(min-width: 1024px) 300px, 240px"
-              className="object-contain w-auto max-h-24 lg:max-h-28"
-              priority
-            />
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+            <span className="text-2xl lg:text-3xl font-bold text-white tracking-tight transition-all duration-200 group-hover:scale-105">
+              Viva<span className="text-yellow-300 drop-shadow-lg">Market</span>
+            </span>
           </Link>
 
           {/* Search bar with category dropdown */}
@@ -96,7 +89,7 @@ export function Header() {
             </Link>
             {/* Devoluções e Pedidos */}
             <Link
-              href={user ? '/orders' : '/login?from=orders'}
+              href={session?.user ? '/orders' : '/login?from=orders'}
               className="hidden md:flex flex-col items-start px-3 py-2 hover:bg-opacity-20 hover:bg-white rounded-lg transition-colors"
             >
               <span className="text-xs text-gray-300">Devoluções</span>
@@ -132,7 +125,7 @@ export function Header() {
               href="/dashboard" 
               className="px-3 py-2 hover:bg-opacity-20 hover:bg-white rounded-md transition-colors text-sm whitespace-nowrap hidden sm:inline"
             >
-              Vender no Pontual Market
+              Vender no VivaMarket
             </Link>
             <Link 
               href="#" 

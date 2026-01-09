@@ -1,0 +1,113 @@
+ORÇAMENTO - MARKETPLACE MVP 2025
+=================================
+RESUMO PARA CLIENTE
+
+
+DESENVOLVIMENTO
+---------------
+- MVP + Sistema de Planos: R$ 1.800,00 2x Parcelas R$900
+- Total Desenvolvimento: R$ 1.800,00   2x Parcelas R$900
+
+
+CUSTOS MENSAIS DE OPERAÇÃO
+---------------------------
+
+SERVIÇOS ESSENCIAIS
+- Vercel Pro: R$ 117,00/mês (Hospedagem do site - inclui SSL grátis) 
+- Neon (Banco de Dados): R$ 30,00/mês (Banco PostgreSQL)
+- Supabase Storage: R$ 0,00/mês (Armazenamento de imagens - até 1GB grátis, suporta ~100 lojistas pequenos)
+- Mercado Pago: R$ 0,00/mês* (Sistema de pagamento - sem mensalidade)
+
+* Mercado Pago cobra taxas sobre transações (4,99% + R$ 0,39 por venda)
+  Essas taxas são do Gateway, não são custos para o desenvolvedor.
+
+TOTAL MENSAL: R$ 147,00
+
+
+INVESTIMENTO TOTAL ATÉ ENTREGAR MVP
+-----------------------------------
+- Desenvolvimento: R$ 1.800,00
+- Infraestrutura (1 mês): R$ 147,00
+- TOTAL INICIAL: R$ 1.947,00
+
+
+CUSTOS APÓS MVP (MENSAL)
+------------------------
+- Infraestrutura (Vercel + Neon): R$ 147,00
+- Taxas do Gateway de Pagamento*: Variável
+- Manutenção:R$30/h (opcional) 
+*VOU DAR GARANTIA DE UM MÊS DE TESTE E SE NÃO QUISER A MANUNTENÇÃO NÃO PRECISA PAGAR*
+
+* Taxas do Gateway (Mercado Pago/Stripe): 4,99% + R$ 0,39 por transação
+  Exemplo: Se processar R$ 1.000 em vendas = R$ 50,00 em taxas
+  IMPORTANTE: Essas taxas são cobradas pelo Gateway (Mercado Pago/Stripe) 
+  diretamente sobre as transações. Não são custos para o desenvolvedor.
+  Normalmente são repassadas para o lojista ou pagas pela plataforma.
+
+CUSTO FIXO MENSAL (para o cliente): R$ 147,00
+CUSTO FIXO MENSAL + Manutenção 2h (para o cliente): R$ 207,00
+
+
+
+OBSERVAÇÕES IMPORTANTES
+-----------------------
+- Sem custos ocultos - Todos os valores estão listados acima
+- Taxas do Gateway - Cobradas pelo Mercado Pago/Stripe sobre transações
+  (não são custos para o desenvolvedor, normalmente repassadas ao lojista)
+- Escalável - Se o projeto crescer, podemos ajustar os planos conforme necessário
+- SSL grátis - Incluído no Vercel Pro
+- Backup automático - Incluído no plano Neon
+
+
+ARMAZENAMENTO DE IMAGENS - SUPABASE STORAGE
+--------------------------------------------
+
+O QUE É ARMAZENADO:
+- Imagens de produtos (até 8 imagens por produto)
+- Logo das lojas
+
+
+CAPACIDADE DO PLANO GRÁTIS (1GB):
+- Aproximadamente 3.000 a 3.500 imagens de produtos
+- Considerando imagens otimizadas (~300KB cada)
+
+QUANTOS CLIENTES/LOJISTAS PODEM USAR:
+
+Cenário 1 - Lojistas Pequenos (10 produtos, 3 imagens cada):
+- 30 imagens por lojista
+- Suporta aproximadamente: 100 lojistas pequenos
+
+Cenário 2 - Lojistas Médios (30 produtos, 4 imagens cada):
+- 120 imagens por lojista
+- Suporta aproximadamente: 25 lojistas médios
+
+Cenário 3 - Lojistas Grandes (100 produtos, 5 imagens cada):
+- 500 imagens por lojista
+- Suporta aproximadamente: 6 lojistas grandes
+
+QUANDO FAZER UPGRADE:
+- O plano grátis (1GB) é suficiente para iniciar e testar o MVP
+- Quando o uso atingir aproximadamente 800MB (80% do limite)
+- Upgrade opcional para plano Pro: R$ 29,00/mês (100GB)
+  * Suportaria ~3.300 lojistas pequenos ou ~830 lojistas médios
+
+RECOMENDAÇÃO:
+O plano grátis é suficiente para começar. O upgrade pode ser feito conforme
+o crescimento do projeto e aumento de lojistas e produtos.
+
+
+O QUE ESTÁ INCLUÍDO NO R$ 1.800,00
+----------------------------------
+- Desenvolvimento completo do MVP
+- Sistema de planos/pagamento (integrado com Mercado Pago ou Stripe)
+- Dashboard para lojistas
+- Sistema de produtos, categorias e busca
+- Carrinho de compras
+- Sistema de autenticação
+- Upload de imagens
+- Responsivo (mobile + desktop)
+
+
+DÚVIDAS?
+--------
+Entre em contato para esclarecer qualquer ponto do orçamento.

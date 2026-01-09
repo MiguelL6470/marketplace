@@ -26,10 +26,10 @@ async function main() {
 
   // Criar um usuário lojista
   const merchantUser = await prisma.user.upsert({
-    where: { email: 'lojista@pontualmarket.com' },
+    where: { email: 'lojista@vivamarket.com' },
     create: {
-      email: 'lojista@pontualmarket.com',
-      name: 'Pontual Market Store',
+      email: 'lojista@vivamarket.com',
+      name: 'VivaMarket Store',
       role: 'MERCHANT',
     },
     update: {},
@@ -41,7 +41,7 @@ async function main() {
     where: { userId: merchantUser.id },
     create: {
       userId: merchantUser.id,
-      storeName: 'Pontual Market Store',
+      storeName: 'VivaMarket Store',
       description: 'A melhor loja para encontrar produtos de qualidade',
       phone: '(11) 99999-9999',
       address: 'São Paulo, SP',

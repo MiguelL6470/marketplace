@@ -2,6 +2,8 @@ import { getServerAuth } from '@/lib/auth'
 import { Plus, Package, TrendingUp, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage() {
   const session = await getServerAuth()
   

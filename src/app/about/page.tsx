@@ -3,15 +3,15 @@ import { ShoppingBag, Users, Heart, Shield, Zap, MapPin } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Sobre Nós | Pontual Market - Marketplace de Volta Redonda',
-  description: 'Conheça o Pontual Market, o marketplace que conecta compradores e vendedores em Volta Redonda e região.',
+  title: 'Sobre Nós | VivaMarket - Marketplace de Volta Redonda',
+  description: 'Conheça o VivaMarket, o marketplace que conecta compradores e vendedores em Volta Redonda e região.',
 }
 
 export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Sobre o Pontual Market</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Sobre o VivaMarket</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Conectando compradores e vendedores em Volta Redonda com confiança, qualidade e praticidade
         </p>
@@ -22,7 +22,7 @@ export default function AboutPage() {
         <section className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Nossa Missão</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            O Pontual Market nasceu com o objetivo de facilitar o comércio eletrônico em Volta Redonda, oferecendo uma
+            O VivaMarket nasceu com o objetivo de facilitar o comércio eletrônico em Volta Redonda, oferecendo uma
             plataforma moderna, segura e acessível tanto para compradores quanto para vendedores locais. Acreditamos no
             poder do comércio local e no potencial de crescimento da economia regional através da tecnologia.
           </p>
@@ -33,7 +33,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Nossa História</h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
             <p>
-              Fundado em 2024, o Pontual Market foi idealizado para atender às necessidades específicas de Volta Redonda.
+              Fundado em 2024, o VivaMarket foi idealizado para atender às necessidades específicas de Volta Redonda.
               Identificamos que a região precisava de uma solução de marketplace que valorizasse o comércio local, oferecesse
               suporte personalizado e priorizasse a experiência do cliente.
             </p>
@@ -170,7 +170,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Faça Parte do Pontual Market</h2>
+          <h2 className="text-3xl font-bold mb-4">Faça Parte do VivaMarket</h2>
           <p className="text-lg mb-6 opacity-90">
             Seja você um comprador em busca de produtos ou um vendedor querendo expandir seu negócio, estamos prontos para
             recebê-lo!

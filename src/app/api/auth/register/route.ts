@@ -49,8 +49,7 @@ export async function POST(req: Request) {
     })
 
     // Criar Account (credenciais) separadamente
-    // @ts-expect-error prisma client pode estar desatualizado até executar prisma generate
-    await (prisma as any).account.create({
+    await prisma.account.create({
       data: {
         userId: user.id,
         type: 'credentials',

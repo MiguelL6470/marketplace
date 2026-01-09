@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/db'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pontualmarket.com.br'
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://vivamarket.com.br'
   
   // Páginas estáticas
   const staticPages: MetadataRoute.Sitemap = [
@@ -54,12 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let categoriesPages: MetadataRoute.Sitemap = []
   try {
     const categories = await prisma.category.findMany({
-      select: { slug: true, updatedAt: true },
+      select: { slug: true },
     })
     
     categoriesPages = categories.map((category) => ({
       url: `${baseUrl}/categories/${category.slug}`,
-      lastModified: category.updatedAt || new Date(),
+      lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.8,
     }))

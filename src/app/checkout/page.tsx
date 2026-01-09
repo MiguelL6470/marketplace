@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useUser } from '@clerk/nextjs'
+import { useSession } from 'next-auth/react'
 import { ArrowLeft, MapPin, CreditCard, CheckCircle } from 'lucide-react'
 
 type CartItem = {
@@ -27,7 +27,8 @@ type ShippingAddress = {
 }
 
 export default function CheckoutPage() {
-  const { user } = useUser()
+  const { data: session } = useSession()
+  const user = session?.user
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)

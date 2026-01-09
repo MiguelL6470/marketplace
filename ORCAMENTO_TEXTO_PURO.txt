@@ -1,0 +1,169 @@
+ORÇAMENTO DO PROJETO - MARKETPLACE MVP 2025
+============================================
+
+RESUMO EXECUTIVO
+----------------
+Este documento detalha todos os custos envolvidos no projeto MVP do Marketplace, desde o desenvolvimento até a entrega e operação inicial.
+
+Valor do Desenvolvimento: R$ 1.800,00 (pagamento único)
+
+
+CUSTOS DE DESENVOLVIMENTO
+--------------------------
+- Desenvolvimento MVP + Sistema de Planos: R$ 1.800,00 (pagamento único)
+- Total Desenvolvimento: R$ 1.800,00
+
+
+CUSTOS DE INFRAESTRUTURA (Mensais)
+-----------------------------------
+
+1. HOSPEDAGEM - VERCEL PRO
+   - Vercel Pro: R$ 117,00/mês (cotação USD/BRL ~R$ 5,85)
+   - Necessário para produção (SSL grátis, CDN, analytics)
+   - Plano Free: R$ 0,00 (não recomendado para produção)
+
+2. BANCO DE DADOS - NEON POSTGRESQL
+   - Neon Starter (Pay-as-you-go): R$ 30,00/mês
+     * Inclui 0.5 GB de storage + 100 horas compute
+   - Neon Launch (Fixo): R$ 79,00/mês
+     * 10 GB storage + 200 horas compute
+   - Neon Scale (Fixo): R$ 199,00/mês
+     * 50 GB storage + 500 horas compute
+   
+   Recomendação para MVP: Neon Starter (R$ 30/mês) - suficiente para começar
+
+3. ARMAZENAMENTO DE IMAGENS - SUPABASE STORAGE
+   - Free Tier: R$ 0,00/mês
+     * 1 GB storage + 2 GB bandwidth
+   - Pro (se necessário): R$ 29,00/mês
+     * 100 GB storage + 200 GB bandwidth
+   
+   Recomendação para MVP: Free Tier (R$ 0) - suficiente para início
+
+4. SISTEMA DE PAGAMENTOS (GATEWAY)
+
+   OPÇÃO A: MERCADO PAGO (Recomendado para Brasil)
+   - Taxa por transação (cartão crédito): 4,99% + R$ 0,39
+   - Taxa por transação (cartão débito): 3,99% + R$ 0,39
+   - PIX: 1,99%
+   - Cobrança Recorrente: Mesmas taxas
+   - Custo mensal fixo: R$ 0,00 (sem mensalidade)
+
+   OPÇÃO B: STRIPE
+   - Taxa por transação: 3,99% + R$ 0,40 (cartão crédito/débito)
+   - PIX: Não disponível (apenas cartões)
+   - Cobrança Recorrente: Mesmas taxas
+   - Custo mensal fixo: R$ 0,00 (sem mensalidade)
+
+   Recomendação: Mercado Pago (melhor para Brasil, suporta PIX)
+   
+   Observação: As taxas são cobradas apenas sobre transações processadas. Não há custo fixo mensal.
+
+
+RESUMO DE CUSTOS MENSAIS
+-------------------------
+
+CENÁRIO BÁSICO (MVP Inicial)
+- Vercel Pro: R$ 117,00
+- Neon PostgreSQL (Starter): R$ 30,00
+- Supabase Storage (Free): R$ 0,00
+- Gateway Pagamento (Mercado Pago): R$ 0,00* (sem custo fixo, apenas taxas por transação)
+- TOTAL MENSAL: R$ 147,00
+
+CENÁRIO COM USO DE STORAGE (se necessário)
+- Vercel Pro: R$ 117,00
+- Neon PostgreSQL (Starter): R$ 30,00
+- Supabase Storage (Pro): R$ 29,00
+- Gateway Pagamento (Mercado Pago): R$ 0,00* (sem custo fixo, apenas taxas por transação)
+- TOTAL MENSAL: R$ 176,00
+
+
+CUSTOS TOTAIS ESTIMADOS
+------------------------
+
+ATÉ A ENTREGA DO MVP (1 mês)
+- Desenvolvimento: R$ 1.800,00
+- Infraestrutura (1 mês): R$ 147,00
+- TOTAL: R$ 1.947,00
+
+CUSTO OPERACIONAL ANUAL (após MVP)
+- Infraestrutura (12 meses): R$ 1.764,00
+- TOTAL ANUAL: R$ 1.764,00
+- Média Mensal: R$ 147,00
+
+
+CUSTOS ADICIONAIS A CONSIDERAR
+-------------------------------
+
+1. TAXAS DE TRANSAÇÃO (GATEWAY)
+   - Cobradas apenas sobre vendas processadas
+   - Estimativa: 3,99% - 4,99% do valor transacionado
+   - Exemplo: Se processar R$ 1.000/mês em vendas:
+     * Mercado Pago: ~R$ 49,90/mês (taxa)
+     * Stripe: ~R$ 43,90/mês (taxa)
+
+2. ESCALABILIDADE (FUTURO)
+   Se o projeto crescer, podem ser necessários:
+   - Neon Launch/Scale: Até R$ 199/mês (se necessário mais recursos)
+   - Vercel Enterprise: Sob consulta (se necessário mais features)
+   - CDN adicional: R$ 50-200/mês (se necessário)
+
+3. MONITORAMENTO E FERRAMENTAS
+   - Sentry (opcional): R$ 0-26/mês (monitoramento de erros)
+   - Analytics avançado: R$ 0-50/mês (Google Analytics Pro ou similar)
+
+
+RECOMENDAÇÕES PARA O CLIENTE
+-----------------------------
+
+SETUP INICIAL (MVP)
+1. Vercel Pro: R$ 117/mês (essencial)
+2. Neon Starter: R$ 30/mês (suficiente para MVP)
+3. Supabase Free: R$ 0 (até 1GB de imagens)
+4. Mercado Pago: R$ 0 fixo (apenas taxas por transação)
+
+Total mínimo mensal: R$ 147,00
+
+PREVISÃO DE CRESCIMENTO
+- Mês 1-3: R$ 147,00/mês (básico)
+- Mês 4-6: R$ 176,00/mês (se precisar de mais storage)
+- Mês 7+: Ajustar conforme uso real
+
+
+OBSERVAÇÕES IMPORTANTES
+-----------------------
+
+1. Taxas de Gateway: As taxas de pagamento (Mercado Pago/Stripe) são cobradas apenas sobre transações processadas. Não há custo fixo mensal.
+
+2. Custos Variáveis: O Neon e Supabase podem ter custos variáveis conforme o uso. Os valores indicados são para o plano básico.
+
+3. SSL: Incluído gratuitamente no Vercel Pro.
+
+4. Backup: O Neon inclui backups automáticos no plano pago.
+
+
+PRÓXIMOS PASSOS
+---------------
+
+1. Confirmar com o cliente:
+   - Volume esperado de transações (para estimar taxas)
+   - Expectativa de crescimento (para planejar escalabilidade)
+
+2. Contratar serviços:
+   - Vercel Pro
+   - Neon PostgreSQL
+   - Supabase (Storage)
+   - Mercado Pago ou Stripe
+
+3. Implementar integração de pagamento real (substituir simulação atual)
+
+
+INFORMAÇÕES DO ORÇAMENTO
+------------------------
+Data do Orçamento: Janeiro 2025
+Validade: 30 dias
+Cotação USD/BRL: ~R$ 5,85 (verificar antes de fechar)
+
+
+
+

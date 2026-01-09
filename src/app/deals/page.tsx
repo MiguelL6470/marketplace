@@ -1,16 +1,11 @@
-export default async function DealsPage() {
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">Ofertas do Dia</h1>
-      <p className="text-gray-600">Em breve você verá aqui as melhores ofertas do Pontual Market.</p>
-    </div>
-  )
-}
-
 import Link from 'next/link'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCard, type ProductMinimal } from '@/components/ProductCard'
 import { getBaseUrl } from '@/lib/api'
 import { TrendingDown, ArrowLeft } from 'lucide-react'
+
+type DealsResponse = {
+  items: ProductMinimal[]
+}
 
 async function fetchDeals() {
   const baseUrl = await getBaseUrl()
@@ -18,7 +13,7 @@ async function fetchDeals() {
     cache: 'no-store',
   })
   if (!res.ok) return { items: [] }
-  const data = await res.json()
+  const data = (await res.json()) as DealsResponse
   // Em uma versão real, isso filtraria produtos em promoção
   // Por enquanto, apenas retorna os produtos mais recentes
   return data
@@ -94,7 +89,7 @@ export default async function DealsPage() {
             </p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {items.map((product: any) => (
+            {items.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
